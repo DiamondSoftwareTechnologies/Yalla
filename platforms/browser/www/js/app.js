@@ -37,9 +37,72 @@ $$('.convert-form-to-data').on('click', function () {
         }
     }, 50);
 });
-
+function deleteGym(gym){
+    var gym_id = gym.dataset.id;
+    showPreLoader();
+        var url = "https://yallagym.herokuapp.com//api/cpanel/deletegym/" ;
+        app.request({
+            url: url+gym_id,
+            method: "DELETE",
+            headers: {
+                contentType: "application/json"
+            },
+            success: function (data, status, xhr) {
+                hidePreLoader();
+                gym.closest('tr').remove();
+                app.dialog.alert("Deleted");
+            },
+            error: function (xhr, status) {
+                hidePreLoader();
+                // navigator.app.exitApp();
+            }
+        });
+}
 $$(document).on("page:init", '.page[data-name="mainPage"]', function (e) {
+    function getGyms(index) {
+        showPreLoader();
+        var url = "https://yallagym.herokuapp.com/api/cpanel/getallgyms" ;
+        app.request({
+            url: url,
+            method: "Get",
+            headers: {
+                contentType: "application/json"
+            },
+            success: function (data, status, xhr) {
+                hidePreLoader();
+                var gyms = JSON.parse(data);
+                var gymsList='';
+                SaveLocalObject('GymsList', gyms);
+                
+                for(var i = 0;i<gyms.length;i++){
+                    gymsList+='<tr><td class="label-cell">'+gyms[i].name+'</td>'+
+                    '<td class="label-cell">'+gyms[i].rate+'</td>'+
+                    '<td class="label-cell">'+gyms[i].visits+'</td>'+
+                    '<td class="label-cell">'+gyms[i].address+'</td>'+
+                    '<td class="label-cell">'+gyms[i].work_time+'</td>'+
+                    '<td class="label-cell">'+gyms[i].phone_gym+'</td>'+
+                    '<td class="label-cell">'+gyms[i].email_gym+'</td>'+
+                    '<td class="label-cell">'+gyms[i].price_d+'</td>'+
+                    '<td class="label-cell">'+gyms[i].price_d_fees+'</td>'+
+                    '<td class="label-cell">'+gyms[i].price_w+'</td>'+
+                    '<td class="label-cell">'+gyms[i].price_w_fees+'</td>'+
+                    '<td class="label-cell">'+gyms[i].price_m+'</td>'+
+                    '<td class="label-cell">'+gyms[i].price_m_fees+'</td>'+
+                    '<td class="label-cell">'+gyms[i].description+'</td>'+
+                    '<td><a style="color:#000;" data-id="'+gyms[i].id
+                    +'" onclick="deleteGym(this)" class="button">Delete</a></td></tr>';
+                }
+                $$('#GymsList').html(gymsList);
 
+                // mainView.router.load({url: "./pages/levelsPage.html"}, {transition: 'f7-circle'});
+            },
+            error: function (xhr, status) {
+                hidePreLoader();
+                // navigator.app.exitApp();
+            }
+        });
+    }
+    getGyms();
 });
 $$(document).on("page:init", '.page[data-name="index"]', function (e) {
 
