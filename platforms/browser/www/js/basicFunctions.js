@@ -60,6 +60,7 @@ function DeleteLocalData(key) {
 
 function Alert(text) {
     app.dialog.alert(text);
+    $$(".dialog-title").addClass('dialog-logo');
 }
 
 function ErrorAlert(text) {
@@ -82,23 +83,12 @@ function hidePreLoader() {
 function onDeviceReady() {
     var Plat;
     Plat = device.platform;
-    // StatusBar.hide();
     document.addEventListener("pause", onPause, false);
     document.addEventListener("resume", onResume, false);
     document.addEventListener("menubutton", onMenuKeyDown, false);
     document.addEventListener("backbutton", onBackKeyDown, false);
     document.addEventListener("online", onOnline, false);
     document.addEventListener("offline", onOffline, false);
-    openApp();
-    // var deviceInfo =
-    //     {
-    //         MobileType: device.manufacturer,
-    //         OS: device.platform,
-    //         MobileID: device.uuid,
-    //         Version: device.version,
-    //         ApplicationVersion: "0.0.1"
-    //     };
-    // localStorage.setItem("deviceInfo", JSON.stringify(deviceInfo));
 }
 
 window.addEventListener('keyboardDidHide', () => {

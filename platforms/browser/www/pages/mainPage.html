@@ -19,39 +19,46 @@
         <div class="block">
             <p>Right Panel content here</p>
             <p><a class="panel-close" href="#">Close me</a></p>
-            <!--<p><a class="panel-open" href="#" data-panel=".panel-left">Open Left Panel</a></p>-->
         </div>
     </div>
     <div class="page-content">
         <br>
-        <a onclick="createGym()">create</a>
-        <br>
-        <div class="data-table card">
-            <table>
-                <thead>
-                <tr>
-                    <th class="label-cell">ID</th>
-                    <th class="label-cell">Name</th>
-                    <th class="numeric-cell">Rate</th>
-                    <th class="medium-only">Visits</th>
-                    <th class="medium-only">Address</th>
-                    <th class="medium-only">Work Time</th>
-                    <th class="medium-only">Phone</th>
-                    <th class="medium-only">Email</th>
-                    <th class="medium-only">Price D</th>
-                    <th class="medium-only">Price D Fees</th>
-                    <th class="medium-only">Price W</th>
-                    <th class="medium-only">Price W Fees</th>
-                    <th class="medium-only">Price M</th>
-                    <th class="medium-only">Price M Fees</th>
-                    <th class="medium-only">Description</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody id="GymsList">
-              
-                </tbody>
-            </table>
+        <div class="row">
+            <div class="col-95"></div>
+            <div class="col-5">
+                <div class="text-align-center" onclick="createGym()">
+                    <i class="icon f7-icons abb-btn green-color">plus_circle_fill</i>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="data-table card">
+                <table>
+                    <thead>
+                    <tr>
+                        <th class="label-cell">ID</th>
+                        <th class="label-cell">Name</th>
+                        <th class="numeric-cell">Rate</th>
+                        <th class="medium-only">Visits</th>
+                        <th class="medium-only">Address</th>
+                        <th class="medium-only">Work Time</th>
+                        <th class="medium-only">Phone</th>
+                        <th class="medium-only">E-mail</th>
+                        <th class="medium-only">Price D</th>
+                        <th class="medium-only">Price D Fees</th>
+                        <th class="medium-only">Price W</th>
+                        <th class="medium-only">Price W Fees</th>
+                        <th class="medium-only">Price M</th>
+                        <th class="medium-only">Price M Fees</th>
+                        <th class="medium-only">Description</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody id="GymsList">
+
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
