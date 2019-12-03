@@ -116,6 +116,12 @@ function createGym() {
 function OrderListPgae() {
     mainView.router.load({url: "./pages/OrdersList.html"}, {transition: 'f7-circle'});
 }
+function UserListPage() {
+    mainView.router.load({url: "./pages/UsersList.html"}, {transition: 'f7-circle'});
+}
+function GymsListPage() {
+    mainView.router.load({url: "./pages/mainPage.html"}, {transition: 'f7-circle'});
+}
 
 function createGymPost() {
     var gym = {
@@ -250,6 +256,46 @@ $$(document).on("page:init", '.page[data-name="OrdersList"]', function (e) {
         });
     }
     getOrders();
+});
+$$(document).on("page:init", '.page[data-name="UsersList"]', function (e) {
+    function getUsers(index) {
+        showPreLoader();
+        var url = "https://yallagym.herokuapp.com//api/cpanel/getallusers";
+        app.request({
+            url: url,
+            method: "Get",
+            headers: {
+                contentType: "application/json"
+            },
+            success: function (data, status, xhr) {
+                hidePreLoader();
+                var users = JSON.parse(data);
+                var usersList = '';
+                SaveLocalObject('UsersList', users);
+                for (var i = 0; i < users.length; i++) {
+                    usersList += '<tr><td class="label-cell">' + users[i].id + 
+                        '<td class="label-cell">' + users[i].name + '</td>' +
+                        '<td class="label-cell">' + users[i].phone + '</td>' +
+                        '<td class="label-cell">' + users[i].email + '</td>' +
+                        '<td class="label-cell">' + users[i].facebook_id + '</td>' +
+                        '<td class="label-cell">' + users[i].img + '</td>' +
+                        '<td class="label-cell">' + users[i].type + '</td>' +
+                        '<td class="label-cell">' + users[i].age + '</td>' +
+                        '<td class="label-cell">' + users[i].address + '</td>' +
+                        '<td class="label-cell">' + users[i].id_orders + '</td>' +
+                        '<td class="label-cell">' + users[i].push + '</td>' +
+                       '</tr>';
+                }
+                $$('#UsersList').html(usersList);
+
+                // mainView.router.load({url: "./pages/levelsPage.html"}, {transition: 'f7-circle'});
+            },
+            error: function (xhr, status) {
+                hidePreLoader();
+            }
+        });
+    }
+    getUsers();
 });
 $$(document).on("page:init", '.page[data-name="mainPage"]', function (e) {
     function getGyms(index) {

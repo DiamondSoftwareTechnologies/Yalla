@@ -121,6 +121,18 @@ body {
     overflow-y: hidden;
 }
 
+.panel-button{
+    background-color: #97CC2D;
+    text-align: center;
+    padding: 1rem;
+    border: 1px solid #ffa000;
+    margin: 3px;
+    font-size: 20px;
+}
+table.user-table tbody tr td{
+    word-break: break-word;
+}
+
 .data-table td, .data-table th {
     padding: 0.5rem !important;
 }
