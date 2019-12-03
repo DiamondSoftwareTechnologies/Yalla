@@ -62,6 +62,31 @@ function deleteGym(gym) {
     $$(".dialog-title").addClass('dialog-logo');
 
 }
+function deleteOrder(order) {
+    var order_id = order.dataset.id;
+    app.dialog.confirm('Are You Sure You Want To Delete This Order ?', function () {
+        showPreLoader();
+        var url = "https://yallagym.herokuapp.com/api/orders/delete/";
+        app.request({
+            url: url + order_id,
+            method: "DELETE",
+            headers: {
+                contentType: "application/json"
+            },
+            success: function (data, status, xhr) {
+                hidePreLoader();
+                order.closest('tr').remove();
+                Alert("Deleted");
+            },
+            error: function (xhr, status) {
+                hidePreLoader();
+            }
+        });
+    }, function () {
+    });
+    $$(".dialog-title").addClass('dialog-logo');
+
+}
 
 function updateGym(gym) {
     var gym_id = gym.dataset.id;
@@ -87,6 +112,9 @@ function updateGym(gym) {
 
 function createGym() {
     mainView.router.load({url: "./pages/createGym.html"}, {transition: 'f7-circle'});
+}
+function OrderListPgae() {
+    mainView.router.load({url: "./pages/OrdersList.html"}, {transition: 'f7-circle'});
 }
 
 function createGymPost() {
@@ -183,6 +211,45 @@ $$(document).on("page:init", '.page[data-name="updateGym"]', function (e) {
     $$('#gym_update_PriceMFees').val(gym[0].price_m_fees);
     $$('#gym_update_Description').val(gym[0].description);
     console.log(gym);
+});
+$$(document).on("page:init", '.page[data-name="OrdersList"]', function (e) {
+    function getOrders(index) {
+        showPreLoader();
+        var url = "https://yallagym.herokuapp.com/api/cpanel/getallorders";
+        app.request({
+            url: url,
+            method: "Get",
+            headers: {
+                contentType: "application/json"
+            },
+            success: function (data, status, xhr) {
+                hidePreLoader();
+                var ordres = JSON.parse(data);
+                var ordersList = '';
+                SaveLocalObject('OrdersList', ordres);
+                for (var i = 0; i < ordres.length; i++) {
+                    ordersList += '<tr><td class="label-cell">' + ordres[i].id_order + 
+                        '<td class="label-cell">' + ordres[i].email_user + '</td>' +
+                        '<td class="label-cell">' + ordres[i].id_gym + '</td>' +
+                        '<td class="label-cell">' + ordres[i].date_order + '</td>' +
+                        '<td class="label-cell">' + ordres[i].status + '</td>' +
+                        '<td class="label-cell">' + ordres[i].subscribe_type + '</td>' +
+                        '<td class="label-cell">' + ordres[i].pay_method + '</td>' +
+                        '<td class="label-cell">' + ordres[i].date_start + '</td>' +
+                        '<td><a data-id="' + ordres[i].id_order
+                        + '" onclick="deleteOrder(this)" class="button"><i class="icon f7-icons green-color">trash_circle_fill</i></a>' +
+                        '</td></tr>';
+                }
+                $$('#OrdersList').html(ordersList);
+
+                // mainView.router.load({url: "./pages/levelsPage.html"}, {transition: 'f7-circle'});
+            },
+            error: function (xhr, status) {
+                hidePreLoader();
+            }
+        });
+    }
+    getOrders();
 });
 $$(document).on("page:init", '.page[data-name="mainPage"]', function (e) {
     function getGyms(index) {
