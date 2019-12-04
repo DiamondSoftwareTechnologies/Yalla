@@ -128,9 +128,8 @@ body {
     border: 1px solid #ffa000;
     margin: 3px;
     font-size: 20px;
-}
-table.user-table tbody tr td{
-    word-break: break-word;
+    display: block;
+    color: #000;
 }
 
 .data-table td, .data-table th {

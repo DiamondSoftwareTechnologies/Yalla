@@ -4,8 +4,22 @@ routes = [
         url: './index.html',
     },
     {
-        path: '/levelsPage/',
-        url: './pages/levelsPage.html',
+        path: '/mainPage/',
+        url: './pages/mainPage.html',
+        options: {
+            transition: 'f7-circle',
+        },
+    },
+    {
+        path: '/UsersList/',
+        url: './pages/UsersList.html',
+        options: {
+            transition: 'f7-circle',
+        },
+    },
+    {
+        path: '/OrdersList/',
+        url: './pages/OrdersList.html',
         options: {
             transition: 'f7-circle',
         },
