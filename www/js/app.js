@@ -44,7 +44,7 @@ function deleteGym(gym) {
         var url = "https://yallagym.herokuapp.com/api/cpanel/deletegym/";
         app.request({
             url: url + gym_id,
-            method: "DELETE",
+            method: "GET",
             headers: {
                 contentType: "application/json"
             },
