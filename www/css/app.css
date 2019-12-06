@@ -119,9 +119,10 @@ body {
 .data-table {
     overflow-x: auto;
     overflow-y: hidden;
+    margin: auto;
 }
 
-.panel-button{
+.panel-button {
     background-color: #97CC2D;
     text-align: center;
     padding: 1rem;
@@ -152,4 +153,20 @@ body {
 .item-floating-label {
     font-weight: 700 !important;
     font-size: 0.8rem !important;
+}
+
+.img-box {
+    margin: auto;
+    padding: 1%;
+    border: 2px solid #97CC2D;
+}
+
+.pb-popup {
+    width: 60%;
+    margin: auto;
+}
+
+.uploadImages {
+    width: 60%;
+    margin: auto;
 }

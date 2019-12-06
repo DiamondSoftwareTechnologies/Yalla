@@ -18,6 +18,9 @@ var app = new Framework7({
         // passwordPlaceholder: GetResourceText("EnterCode")
         // promptPlaceholder: GetResourceText('EnterCode'),
     },
+    photoBrowser: {
+        type: 'popup',
+    },
 });
 var mainView = app.views.create(".view-main");
 
@@ -62,6 +65,31 @@ function deleteGym(gym) {
     $$(".dialog-title").addClass('dialog-logo');
 
 }
+
+function sendNotification(gym) {
+    var gym_id = gym.dataset.id;
+    app.dialog.prompt('Notification text', function () {
+        showPreLoader();
+        var url = "https://yallagym.herokuapp.com/api/cpanel/getgymimages/";
+        app.request({
+            url: url + gym_id,
+            method: "GET",
+            headers: {
+                contentType: "application/json"
+            },
+            success: function (data, status, xhr) {
+                hidePreLoader();
+            },
+            error: function (xhr, status) {
+                hidePreLoader();
+            }
+        });
+    }, function () {
+    });
+    $$(".dialog-title").addClass('dialog-logo');
+
+}
+
 function deleteOrder(order) {
     var order_id = order.dataset.id;
     app.dialog.confirm('Are You Sure You Want To Delete This Order ?', function () {
@@ -112,15 +140,6 @@ function updateGym(gym) {
 
 function createGym() {
     mainView.router.load({url: "./pages/createGym.html"}, {transition: 'f7-circle'});
-}
-function OrderListPgae() {
-    mainView.router.load({url: "./pages/OrdersList.html"}, {transition: 'f7-circle'});
-}
-function UserListPage() {
-    mainView.router.load({url: "./pages/UsersList.html"}, {transition: 'f7-circle'});
-}
-function GymsListPage() {
-    mainView.router.load({url: "./pages/mainPage.html"}, {transition: 'f7-circle'});
 }
 
 function createGymPost() {
@@ -234,7 +253,7 @@ $$(document).on("page:init", '.page[data-name="OrdersList"]', function (e) {
                 var ordersList = '';
                 SaveLocalObject('OrdersList', ordres);
                 for (var i = 0; i < ordres.length; i++) {
-                    ordersList += '<tr><td class="label-cell">' + ordres[i].id_order + 
+                    ordersList += '<tr><td class="label-cell">' + ordres[i].id_order +
                         '<td class="label-cell">' + ordres[i].email_user + '</td>' +
                         '<td class="label-cell">' + ordres[i].id_gym + '</td>' +
                         '<td class="label-cell">' + ordres[i].date_order + '</td>' +
@@ -255,6 +274,7 @@ $$(document).on("page:init", '.page[data-name="OrdersList"]', function (e) {
             }
         });
     }
+
     getOrders();
 });
 $$(document).on("page:init", '.page[data-name="UsersList"]', function (e) {
@@ -273,7 +293,7 @@ $$(document).on("page:init", '.page[data-name="UsersList"]', function (e) {
                 var usersList = '';
                 SaveLocalObject('UsersList', users);
                 for (var i = 0; i < users.length; i++) {
-                    usersList += '<tr><td class="label-cell">' + users[i].id + 
+                    usersList += '<tr><td class="label-cell">' + users[i].id +
                         '<td class="label-cell">' + users[i].name + '</td>' +
                         '<td class="label-cell">' + users[i].phone + '</td>' +
                         '<td class="label-cell">' + users[i].email + '</td>' +
@@ -284,7 +304,7 @@ $$(document).on("page:init", '.page[data-name="UsersList"]', function (e) {
                         '<td class="label-cell">' + users[i].address + '</td>' +
                         '<td class="label-cell">' + users[i].id_orders + '</td>' +
                         '<td class="label-cell">' + users[i].push + '</td>' +
-                       '</tr>';
+                        '</tr>';
                 }
                 $$('#UsersList').html(usersList);
 
@@ -295,6 +315,7 @@ $$(document).on("page:init", '.page[data-name="UsersList"]', function (e) {
             }
         });
     }
+
     getUsers();
 });
 $$(document).on("page:init", '.page[data-name="mainPage"]', function (e) {
@@ -331,11 +352,15 @@ $$(document).on("page:init", '.page[data-name="mainPage"]', function (e) {
                         + '" onclick="deleteGym(this)" class="button"><i class="icon f7-icons green-color">trash_circle_fill</i></a>' +
                         '<a data-id="' + gyms[i].id + '" onclick="updateGym(this)" class="button">' +
                         '<i class="icon f7-icons green-color">square_pencil</i>' +
-                        '</a></td></tr>';
+                        '</a></td>' +
+                        '<td><a data-id="' + gyms[i].id
+                        + '" onclick="openGymGallery(this)" class="button"><i class="icon f7-icons green-color">photo</i></a>' +
+                        '<a data-id="' + gyms[i].id + '" onclick="sendNotification(this)" class="button">' +
+                        '<i class="icon f7-icons green-color">bell_circle</i>' +
+                        '</a></td>' +
+                        '</tr>';
                 }
                 $$('#GymsList').html(gymsList);
-
-                // mainView.router.load({url: "./pages/levelsPage.html"}, {transition: 'f7-circle'});
             },
             error: function (xhr, status) {
                 hidePreLoader();
@@ -348,7 +373,99 @@ $$(document).on("page:init", '.page[data-name="mainPage"]', function (e) {
 $$(document).on("page:init", '.page[data-name="index"]', function (e) {
 
 });
+$$(document).on("page:init", '.page[data-name="gallery"]', function (e) {
+    $$('.pb-popup').on('click', function () {
+        var photos = GetLocalDataObject('gymImagesObj');
+        var myPhotoBrowserPopup = app.photoBrowser.create({
+            photos: photos,
+            type: 'popup'
+        });
+        myPhotoBrowserPopup.open();
+    });
+    $$('.uploadImages').on('click', function () {
+        var id = GetLocalData('gymIdGallery');
+        var index64 = imageBase64.indexOf('64,');
+        var byteImg = imageBase64.substring(index64 + 3);
+        console.log(byteImg);
+        var obj = {
+            "id_gym": id,
+            "bytes": byteImg
+        };
+        uploadGymImgs(obj);
+    });
+});
 
+function openGymGallery(gym) {
+    var gym_id = gym.dataset.id;
+    SaveLocalData('gymIdGallery', gym_id);
+    showPreLoader();
+    var url = "https://yallagym.herokuapp.com/api/cpanel/getgymimages/";
+    app.request({
+        url: url + gym_id,
+        method: "GET",
+        headers: {
+            contentType: "application/json"
+        },
+        success: function (data, status, xhr) {
+            hidePreLoader();
+            SaveLocalObject('gymImagesObj', JSON.parse(data));
+            mainView.router.load({url: './pages/gallery.html'});
+        },
+        error: function (xhr, status) {
+            hidePreLoader();
+        }
+    });
+}
+
+function uploadGymImgs(obj) {
+    showPreLoader();
+    var url = "https://yallagym.herokuapp.com/api/cpanel/uploadimage";
+    app.request({
+        url: url,
+        method: "POST",
+        data: obj,
+        contentType: "application/json",
+        success: function (data, status, xhr) {
+            hidePreLoader();
+            Alert('Images Uploaded Successfully');
+        },
+        error: function (xhr, status) {
+            hidePreLoader();
+            Alert('Images Not Uploaded Successfully');
+        }
+    });
+}
+
+var imageBase64;
+
+function previewFiles() {
+    var preview = document.querySelector('#img-preview');
+    var files = document.querySelector('input[type=file]').files;
+
+    function readAndPreview(file) {
+        if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+            var reader = new FileReader();
+
+            reader.addEventListener("load", function () {
+                var image = new Image();
+                image.height = 250;
+                image.width = 250;
+                image.title = file.name;
+                image.src = this.result;
+                imageBase64 = this.result;
+                preview.appendChild(image);
+                $$('#img-preview').addClass('img-box');
+                $$('.uploadImages').removeClass('disabled');
+            }, false);
+            reader.readAsDataURL(file);
+        }
+    }
+
+    if (files) {
+        [].forEach.call(files, readAndPreview);
+    }
+
+}
 
 function parseArabic(str) {
     return Number(

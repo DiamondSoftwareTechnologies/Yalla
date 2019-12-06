@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f8aca861-1464-46e1-9bb2-3071c009dfe7" name="Default" comment="" />
+    <list default="true" id="f8aca861-1464-46e1-9bb2-3071c009dfe7" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/www/pages/gallery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/www/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/app.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -17,8 +22,35 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="50" column="29" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
+            <state relative-caret-position="416">
+              <caret line="457" column="57" selection-start-line="457" selection-start-column="57" selection-end-line="457" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gallery.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/pages/gallery.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="26" column="83" selection-start-line="26" selection-start-column="71" selection-end-line="26" selection-end-column="83" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/css/app.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="700">
+              <caret line="170" column="17" selection-start-line="170" selection-start-column="17" selection-end-line="170" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mainPage.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/pages/mainPage.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="269">
+              <caret line="34" column="56" selection-start-line="34" selection-start-column="56" selection-end-line="34" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -34,20 +66,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>.sv</find>
-      <find>questions</find>
-      <find>repea</find>
-      <find>question</find>
-      <find>start-btn</find>
-      <find>start</find>
-      <find>elementary-level</find>
-      <find>getques</find>
-      <find>submit-question-btn</find>
-      <find>question-number</find>
-      <find>questionPage</find>
-      <find>selected</find>
-      <find>line</find>
-      <find>'src</find>
       <find>successMedia</find>
       <find>aler</find>
       <find>.Id</find>
@@ -64,6 +82,20 @@
       <find>allow</find>
       <find>sec</find>
       <find>mainPage</find>
+      <find>DELETE</find>
+      <find>&quot;pos</find>
+      <find>main</find>
+      <find>'gym</find>
+      <find>imgs</find>
+      <find>gymImagesObj</find>
+      <find>gall</find>
+      <find>uploadGymImgs</find>
+      <find>imagesObj</find>
+      <find>ph</find>
+      <find>uploadimage</find>
+      <find>GymsList</find>
+      <find>preview</find>
+      <find>data-table</find>
     </findStrings>
     <replaceStrings>
       <replace>60</replace>
@@ -88,11 +120,12 @@
         <option value="$PROJECT_DIR$/www/pages/levelsPage.html" />
         <option value="$PROJECT_DIR$/www/pages/questionPage.html" />
         <option value="$PROJECT_DIR$/www/js/basicFunctions.js" />
-        <option value="$PROJECT_DIR$/www/css/app.css" />
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/pages/mainPage.html" />
         <option value="$PROJECT_DIR$/www/pages/updateGym.html" />
         <option value="$PROJECT_DIR$/www/pages/createGym.html" />
+        <option value="$PROJECT_DIR$/www/css/app.css" />
+        <option value="$PROJECT_DIR$/www/pages/gallery.html" />
         <option value="$PROJECT_DIR$/www/js/app.js" />
       </list>
     </option>
@@ -142,7 +175,19 @@
               <item name="Yalla Gym Panel" type="b2602c69:ProjectViewProjectNode" />
               <item name="Yalla Gym Panel" type="462c0819:PsiDirectoryNode" />
               <item name="www" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Yalla Gym Panel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Yalla Gym Panel" type="462c0819:PsiDirectoryNode" />
+              <item name="www" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Yalla Gym Panel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Yalla Gym Panel" type="462c0819:PsiDirectoryNode" />
+              <item name="www" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -204,21 +249,22 @@
       <workItem from="1574940617653" duration="15022000" />
       <workItem from="1575488500151" duration="2645000" />
       <workItem from="1575529852950" duration="623000" />
-      <workItem from="1575532752967" duration="147000" />
+      <workItem from="1575532752967" duration="11603000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96357000" />
+    <option name="totallyTimeSpent" value="107813000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -233,18 +279,17 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -252,7 +297,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.28019926" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Favorites" order="3" side_tool="true" />
     </layout-to-restore>
@@ -288,7 +333,6 @@
     <entry file="file://$PROJECT_DIR$/www/js/app.js" />
     <entry file="file://$PROJECT_DIR$/www/index.html" />
     <entry file="file://$PROJECT_DIR$/www/pages/form.html" />
-    <entry file="file://$PROJECT_DIR$/www/pages/mainPage.html" />
     <entry file="file://$PROJECT_DIR$/www/css/icons.css" />
     <entry file="file://$PROJECT_DIR$/www/js/routes.js" />
     <entry file="file://$PROJECT_DIR$/www/js/app.js" />
@@ -311,12 +355,32 @@
     <entry file="file://$PROJECT_DIR$/www/css/framework7.bundle.min.css" />
     <entry file="file://$PROJECT_DIR$/config.xml" />
     <entry file="file://$PROJECT_DIR$/www/index.html" />
-    <entry file="file://$PROJECT_DIR$/www/css/app.css" />
     <entry file="file://$PROJECT_DIR$/www/js/basicFunctions.js" />
+    <entry file="file://$PROJECT_DIR$/www/pages/mainPage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="34" column="56" selection-start-line="34" selection-start-column="56" selection-end-line="34" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="170" column="17" selection-start-line="170" selection-start-column="17" selection-end-line="170" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/pages/gallery.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="83" selection-start-line="26" selection-start-column="71" selection-end-line="26" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="50" column="29" selection-start-line="50" selection-start-column="29" selection-end-line="50" selection-end-column="29" />
+        <state relative-caret-position="416">
+          <caret line="457" column="57" selection-start-line="457" selection-start-column="57" selection-end-line="457" selection-end-column="57" />
         </state>
       </provider>
     </entry>
