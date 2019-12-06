@@ -159,7 +159,7 @@ function createGymPost() {
         "price_w_fees": $$('#gym_create_PriceWFees').val(),
         "price_m_fees": $$('#gym_create_PriceMFees').val(),
         "description": $$('#gym_create_Description').val(),
-        "coordinates": "34.2535,35.32432",
+        "coordinates": $$('#gym_create_Coordinates').val(),
         "images": "https://firebasestorage.googleapis.com/v0/b/yallagym-a6e4c.appspot.com/o/Hammar.jpg?alt=media&token=ed499fc1-b9c2-43ad-b378-04c41d2d721b;https://firebasestorage.googleapis.com/v0/b/yallagym-a6e4c.appspot.com/o/Hammar2.jpg?alt=media&token=e793aaa6-0ab3-47e9-9124-c4101f0e0b42;https://firebasestorage.googleapis.com/v0/b/yallagym-a6e4c.appspot.com/o/gym-fitness-center.jpg?alt=media&token=0ca2d730-7907-4d85-b3b0-7fe2c39461f8"
     };
     showPreLoader();
@@ -179,7 +179,11 @@ function createGymPost() {
         }
     });
 }
-
+function openMap(lat,long) {
+    // let url = "https://www.google.com/maps/dir/?api=1&destination=31.962752,35.853173";
+    let url = "https://www.google.com/maps/dir/?api=1&destination="+lat+','+long;
+    window.open(url, '_blank');
+}
 function updateGymPost() {
     var gym = {
         "id_gym": $$('#gym_update_ID').val(),
@@ -197,7 +201,7 @@ function updateGymPost() {
         "price_w_fees": $$('#gym_update_PriceWFees').val(),
         "price_m_fees": $$('#gym_update_PriceMFees').val(),
         "description": $$('#gym_update_Description').val(),
-        "coordinates": "34.2535,35.32432",
+        "coordinates": $$('#gym_update_Coordinates').val(),
         "images": "https://firebasestorage.googleapis.com/v0/b/yallagym-a6e4c.appspot.com/o/Hammar.jpg?alt=media&token=ed499fc1-b9c2-43ad-b378-04c41d2d721b;https://firebasestorage.googleapis.com/v0/b/yallagym-a6e4c.appspot.com/o/Hammar2.jpg?alt=media&token=e793aaa6-0ab3-47e9-9124-c4101f0e0b42;https://firebasestorage.googleapis.com/v0/b/yallagym-a6e4c.appspot.com/o/gym-fitness-center.jpg?alt=media&token=0ca2d730-7907-4d85-b3b0-7fe2c39461f8"
     };
     showPreLoader();
@@ -220,12 +224,17 @@ function updateGymPost() {
 
 $$(document).on("page:init", '.page[data-name="updateGym"]', function (e) {
     var gym = GetLocalDataObject('GymToUpdate');
+    var coordinates=gym[0].coordinates;
+    coordinateArray=coordinates.split(",");
+    var lat=coordinateArray[0];
+    var long=coordinateArray[1];
     $$('#gym_update_ID').val(gym[0].id_gym);
     $$('#gym_update_Name').val(gym[0].name);
     $$('#gym_update_Rate').val(gym[0].rate);
     $$('#gym_update_Visits').val(gym[0].visits);
     $$('#gym_update_Address').val(gym[0].address);
     $$('#gym_update_WorkTime').val(gym[0].work_time);
+    $$('#gym_update_Coordinates').val(gym[0].coordinates);
     $$('#gym_update_Phone').val(gym[0].phone_gym);
     $$('#gym_update_Email').val(gym[0].email_gym);
     $$('#gym_update_PriceD').val(gym[0].price_d);
@@ -334,11 +343,16 @@ $$(document).on("page:init", '.page[data-name="mainPage"]', function (e) {
                 var gymsList = '';
                 SaveLocalObject('GymsList', gyms);
                 for (var i = 0; i < gyms.length; i++) {
+                    var coordinates= gyms[i].coordinates;
+                    coordinateArray=coordinates.split(",");
+                    var lat=coordinateArray[0];
+                    var long=coordinateArray[1];
                     gymsList += '<tr><td class="label-cell">' + gyms[i].id + '</td><td class="label-cell">' + gyms[i].name + '</td>' +
                         '<td class="label-cell">' + gyms[i].rate + '</td>' +
                         '<td class="label-cell">' + gyms[i].visits + '</td>' +
                         '<td class="label-cell">' + gyms[i].address + '</td>' +
                         '<td class="label-cell">' + gyms[i].work_time + '</td>' +
+                        '<td class="label-cell" onclick="openMap('+lat+','+long+')"><a>coordinates</a></td>' +
                         '<td class="label-cell">' + gyms[i].phone_gym + '</td>' +
                         '<td class="label-cell">' + gyms[i].email_gym + '</td>' +
                         '<td class="label-cell">' + gyms[i].price_d + '</td>' +
