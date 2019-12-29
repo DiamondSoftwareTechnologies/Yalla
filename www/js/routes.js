@@ -16,6 +16,12 @@ routes = [
         options: {
             transition: 'f7-circle',
         },
+    },{
+        path: '/createUser/',
+        url: './pages/createUser.html',
+        options: {
+            transition: 'f7-circle',
+        },
     },
     {
         path: '/OrdersList/',

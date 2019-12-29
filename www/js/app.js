@@ -26,19 +26,6 @@ var mainView = app.views.create(".view-main");
 
 var serverURL = 'http://178.20.189.90:5552/api/';
 
-$$('.convert-form-to-data').on('click', function () {
-    var formData = app.form.convertToData('#my-form');
-    console.log(formData);
-    setTimeout(function () {
-        var username = formData.name;
-        var password = formData.password;
-        if (username != "Admin" && password != "P@ssw0rd") {
-            mainView.router.load({url: "./pages/mainPage.html"}, {transition: 'f7-circle'});
-        } else {
-            Alert("الرجاء تعبئة جميع الحقول بشكل صحيح");
-        }
-    }, 50);
-});
 
 function deleteGym(gym) {
     var gym_id = gym.dataset.id;
@@ -68,17 +55,32 @@ function deleteGym(gym) {
 
 function sendNotification(gym) {
     var gym_id = gym.dataset.id;
-    app.dialog.prompt('Notification text', function () {
+    app.dialog.prompt('Notification text', function (value) {
+        body={
+            "title":"{title_msg}",
+            "body":"{body_msg",
+            "id": "{id}"
+        }
+
+
+
+        var body = {
+            "title": "title_msg",
+            "body": value,
+            "id": gym_id
+        };
         showPreLoader();
-        var url = "https://yallagym.herokuapp.com/api/cpanel/getgymimages/";
+        var url = "https://yallagym.herokuapp.com/api/cpanel/user/sendpush";
         app.request({
             url: url + gym_id,
-            method: "GET",
+            method: "POST",
+            data: body,
             headers: {
                 contentType: "application/json"
             },
             success: function (data, status, xhr) {
                 hidePreLoader();
+                Alert(data);
             },
             error: function (xhr, status) {
                 hidePreLoader();
@@ -138,14 +140,68 @@ function updateGym(gym) {
     });
 }
 
+function updateAdmin(admin) {
+    var admin_id = admin.dataset.id;
+    showPreLoader();
+    var url = "https://yallagym.herokuapp.com/api/cpanel/getadmin/";
+    app.request({
+        url: url + admin_id,
+        method: "get",
+        headers: {
+            contentType: "application/json"
+        },
+        success: function (data, status, xhr) {
+            hidePreLoader();
+            var gym = JSON.parse(data);
+            SaveLocalObject('AdminToUpdate', gym);
+            mainView.router.load({url: "./pages/updateAdmin.html"}, {transition: 'f7-circle'});
+        },
+        error: function (xhr, status) {
+            hidePreLoader();
+        }
+    });
+}
+
+function deleteAdmin(admin) {
+    var gym_id = admin.dataset.id;
+    app.dialog.confirm('Are You Sure You Want To Delete This Admin ?', function () {
+        showPreLoader();
+        var url = "https://yallagym.herokuapp.com/api/cpanel/deleteadmin/";
+        app.request({
+            url: url + gym_id,
+            method: "GET",
+            headers: {
+                contentType: "application/json"
+            },
+            success: function (data, status, xhr) {
+                hidePreLoader();
+                admin.closest('tr').remove();
+                Alert("Deleted");
+            },
+            error: function (xhr, status) {
+                hidePreLoader();
+            }
+        });
+    }, function () {
+    });
+    $$(".dialog-title").addClass('dialog-logo');
+
+}
+
 function createGym() {
     mainView.router.load({url: "./pages/createGym.html"}, {transition: 'f7-circle'});
+}
+
+function createAdminUser() {
+    mainView.router.load({url: "./pages/createUserForm.html"}, {transition: 'f7-circle'});
 }
 
 function createGymPost() {
     var gym = {
         "id_gym": $$('#gym_create_ID').val(),
         "name": $$('#gym_create_Name').val(),
+        "username": $$('#gym_create_user_name').val(),
+        "password": $$('#gym_create_password').val(),
         "address": $$('#gym_create_Address').val(),
         "phone_gym": $$('#gym_create_Phone').val(),
         "email_gym": $$('#gym_create_Email').val(),
@@ -179,15 +235,43 @@ function createGymPost() {
         }
     });
 }
-function openMap(lat,long) {
+
+function createAdminUserPost() {
+    var user = {
+        "username": $$('#adminUserName').val(),
+        "password": $$('#admin_password').val(),
+        "role": $$('#adminUserRole').val(),
+    };
+    showPreLoader();
+    var url = "https://yallagym.herokuapp.com/api/cpanel/addadmin";
+    app.request({
+        url: url,
+        method: "POST",
+        data: user,
+        contentType: "application/json",
+        success: function (data, status, xhr) {
+            hidePreLoader();
+            Alert("Added New admin");
+            mainView.router.load({url: "./pages/createUser.html"}, {transition: 'f7-circle'});
+        },
+        error: function (xhr, status) {
+            hidePreLoader();
+        }
+    });
+}
+
+function openMap(lat, long) {
     // let url = "https://www.google.com/maps/dir/?api=1&destination=31.962752,35.853173";
-    let url = "https://www.google.com/maps/dir/?api=1&destination="+lat+','+long;
+    let url = "https://www.google.com/maps/dir/?api=1&destination=" + lat + ',' + long;
     window.open(url, '_blank');
 }
+
 function updateGymPost() {
     var gym = {
         "id_gym": $$('#gym_update_ID').val(),
         "name": $$('#gym_update_Name').val(),
+        "username": $$('#gym_update_user_name').val(),
+        "password": $$('#gym_update_password').val(),
         "address": $$('#gym_update_Address').val(),
         "phone_gym": $$('#gym_update_Phone').val(),
         "email_gym": $$('#gym_update_Email').val(),
@@ -222,14 +306,41 @@ function updateGymPost() {
     });
 }
 
+function updateAdminUserPost() {
+    var admin = {
+        "id": $$('#adminUserID').val(),
+        "username": $$('#adminUserName').val(),
+        "password": $$('#admin_password').val(),
+        "role": $$('#adminUserRole').val(),
+    };
+    showPreLoader();
+    var url = "https://yallagym.herokuapp.com/api/cpanel/addadmin";
+    app.request({
+        url: url,
+        method: "POST",
+        data: admin,
+        contentType: "application/json",
+        success: function (data, status, xhr) {
+            hidePreLoader();
+            Alert("Admin Data Updated");
+            mainView.router.load({url: "./pages/createUser.html"}, {transition: 'f7-circle'});
+        },
+        error: function (xhr, status) {
+            hidePreLoader();
+        }
+    });
+}
+
 $$(document).on("page:init", '.page[data-name="updateGym"]', function (e) {
     var gym = GetLocalDataObject('GymToUpdate');
-    var coordinates=gym[0].coordinates;
-    coordinateArray=coordinates.split(",");
-    var lat=coordinateArray[0];
-    var long=coordinateArray[1];
+    var coordinates = gym[0].coordinates;
+    coordinateArray = coordinates.split(",");
+    var lat = coordinateArray[0];
+    var long = coordinateArray[1];
     $$('#gym_update_ID').val(gym[0].id_gym);
     $$('#gym_update_Name').val(gym[0].name);
+    $$('#gym_update_user_name').val(gym[0].username);
+    $$('#gym_update_password').val(gym[0].password);
     $$('#gym_update_Rate').val(gym[0].rate);
     $$('#gym_update_Visits').val(gym[0].visits);
     $$('#gym_update_Address').val(gym[0].address);
@@ -245,6 +356,14 @@ $$(document).on("page:init", '.page[data-name="updateGym"]', function (e) {
     $$('#gym_update_PriceMFees').val(gym[0].price_m_fees);
     $$('#gym_update_Description').val(gym[0].description);
     console.log(gym);
+});
+$$(document).on("page:init", '.page[data-name="updateAdmin"]', function (e) {
+    var admin = GetLocalDataObject('AdminToUpdate');
+    $$('#adminUserID').val(admin[0].id);
+    $$('#adminUserName').val(admin[0].username);
+    $$('#admin_password').val(admin[0].password);
+    $$('#adminUserRole').val(admin[0].role);
+    console.log(admin);
 });
 $$(document).on("page:init", '.page[data-name="OrdersList"]', function (e) {
     function getOrders(index) {
@@ -287,45 +406,10 @@ $$(document).on("page:init", '.page[data-name="OrdersList"]', function (e) {
     getOrders();
 });
 $$(document).on("page:init", '.page[data-name="UsersList"]', function (e) {
-    function getUsers(index) {
-        showPreLoader();
-        var url = "https://yallagym.herokuapp.com//api/cpanel/getallusers";
-        app.request({
-            url: url,
-            method: "Get",
-            headers: {
-                contentType: "application/json"
-            },
-            success: function (data, status, xhr) {
-                hidePreLoader();
-                var users = JSON.parse(data);
-                var usersList = '';
-                SaveLocalObject('UsersList', users);
-                for (var i = 0; i < users.length; i++) {
-                    usersList += '<tr><td class="label-cell">' + users[i].id +
-                        '<td class="label-cell">' + users[i].name + '</td>' +
-                        '<td class="label-cell">' + users[i].phone + '</td>' +
-                        '<td class="label-cell">' + users[i].email + '</td>' +
-                        '<td class="label-cell">' + users[i].facebook_id + '</td>' +
-                        '<td class="label-cell">' + users[i].img + '</td>' +
-                        '<td class="label-cell">' + users[i].type + '</td>' +
-                        '<td class="label-cell">' + users[i].age + '</td>' +
-                        '<td class="label-cell">' + users[i].address + '</td>' +
-                        '<td class="label-cell">' + users[i].id_orders + '</td>' +
-                        '<td class="label-cell">' + users[i].push + '</td>' +
-                        '</tr>';
-                }
-                $$('#UsersList').html(usersList);
-
-                // mainView.router.load({url: "./pages/levelsPage.html"}, {transition: 'f7-circle'});
-            },
-            error: function (xhr, status) {
-                hidePreLoader();
-            }
-        });
-    }
-
     getUsers();
+});
+$$(document).on("page:init", '.page[data-name="createUser"]', function (e) {
+    getAdminUsers();
 });
 $$(document).on("page:init", '.page[data-name="mainPage"]', function (e) {
     function getGyms(index) {
@@ -343,16 +427,18 @@ $$(document).on("page:init", '.page[data-name="mainPage"]', function (e) {
                 var gymsList = '';
                 SaveLocalObject('GymsList', gyms);
                 for (var i = 0; i < gyms.length; i++) {
-                    var coordinates= gyms[i].coordinates;
-                    coordinateArray=coordinates.split(",");
-                    var lat=coordinateArray[0];
-                    var long=coordinateArray[1];
-                    gymsList += '<tr><td class="label-cell">' + gyms[i].id + '</td><td class="label-cell">' + gyms[i].name + '</td>' +
+                    var coordinates = gyms[i].coordinates;
+                    coordinateArray = coordinates.split(",");
+                    var lat = coordinateArray[0];
+                    var long = coordinateArray[1];
+                    gymsList += '<tr><td class="label-cell">' + gyms[i].id + '</td>' +
+                        '<td class="label-cell">' + gyms[i].id_gym + '</td>' +
+                        '<td class="label-cell">' + gyms[i].name + '</td>' +
                         '<td class="label-cell">' + gyms[i].rate + '</td>' +
                         '<td class="label-cell">' + gyms[i].visits + '</td>' +
                         '<td class="label-cell">' + gyms[i].address + '</td>' +
                         '<td class="label-cell">' + gyms[i].work_time + '</td>' +
-                        '<td class="label-cell" onclick="openMap('+lat+','+long+')"><a>coordinates</a></td>' +
+                        '<td class="label-cell" onclick="openMap(' + lat + ',' + long + ')"><a>coordinates</a></td>' +
                         '<td class="label-cell">' + gyms[i].phone_gym + '</td>' +
                         '<td class="label-cell">' + gyms[i].email_gym + '</td>' +
                         '<td class="label-cell">' + gyms[i].price_d + '</td>' +
@@ -362,13 +448,15 @@ $$(document).on("page:init", '.page[data-name="mainPage"]', function (e) {
                         '<td class="label-cell">' + gyms[i].price_m + '</td>' +
                         '<td class="label-cell">' + gyms[i].price_m_fees + '</td>' +
                         '<td class="label-cell">' + gyms[i].description + '</td>' +
-                        '<td><a data-id="' + gyms[i].id
-                        + '" onclick="deleteGym(this)" class="button"><i class="icon f7-icons green-color">trash_circle_fill</i></a>' +
+                        '<td class="label-cell">' + gyms[i].username + '</td>' +
+                        '<td class="label-cell">' + gyms[i].password + '</td>' +
+                        '<td class="numeric-cell"><a data-id="' + gyms[i].id + '" onclick="deleteGym(this)" class="button">' +
+                        '<i class="icon f7-icons green-color">trash_circle_fill</i></a>' +
                         '<a data-id="' + gyms[i].id + '" onclick="updateGym(this)" class="button">' +
                         '<i class="icon f7-icons green-color">square_pencil</i>' +
                         '</a></td>' +
-                        '<td><a data-id="' + gyms[i].id
-                        + '" onclick="openGymGallery(this)" class="button"><i class="icon f7-icons green-color">photo</i></a>' +
+                        '<td class="numeric-cell"><a data-id="' + gyms[i].id +
+                        '" onclick="openGymGallery(this)" class="button"><i class="icon f7-icons green-color">photo</i></a>' +
                         '<a data-id="' + gyms[i].id + '" onclick="sendNotification(this)" class="button">' +
                         '<i class="icon f7-icons green-color">bell_circle</i>' +
                         '</a></td>' +
@@ -385,7 +473,37 @@ $$(document).on("page:init", '.page[data-name="mainPage"]', function (e) {
     getGyms();
 });
 $$(document).on("page:init", '.page[data-name="index"]', function (e) {
-
+    $$('.convert-form-to-data').on('click', function () {
+        var formData = app.form.convertToData('#my-form');
+        // var username = formData.name;
+        // var password = formData.password;
+        var loginBody = {
+            "username": formData.name,
+            "password": formData.password
+        };
+        if (loginBody.username && loginBody.password) {
+            console.log(loginBody);
+            var url = "https://yallagym.herokuapp.com/api/cpanel/login";
+            app.request({
+                url: url,
+                method: "POST",
+                data: loginBody,
+                contentType: "application/json",
+                success: function (data, status, xhr) {
+                    hidePreLoader();
+                    var response = data;
+                    if (data == 'username not found')
+                        Alert(data);
+                    else mainView.router.load({url: './pages/mainPage.html'});
+                },
+                error: function (xhr, status) {
+                    hidePreLoader();
+                    Alert('error');
+                }
+            });
+        }
+        else Alert('Please fill all fields');
+    });
 });
 $$(document).on("page:init", '.page[data-name="gallery"]', function (e) {
     $$('.pb-popup').on('click', function () {
@@ -408,6 +526,82 @@ $$(document).on("page:init", '.page[data-name="gallery"]', function (e) {
         uploadGymImgs(obj);
     });
 });
+
+function getUsers() {
+    showPreLoader();
+    var url = "https://yallagym.herokuapp.com//api/cpanel/getallusers";
+    app.request({
+        url: url,
+        method: "Get",
+        headers: {
+            contentType: "application/json"
+        },
+        success: function (data, status, xhr) {
+            hidePreLoader();
+            var users = JSON.parse(data);
+            var usersList = '';
+            SaveLocalObject('UsersList', users);
+            for (var i = 0; i < users.length; i++) {
+                usersList += '<tr><td class="label-cell">' + users[i].id +
+                    '<td class="label-cell">' + users[i].first_name + '</td>' +
+                    '<td class="label-cell">' + users[i].last_name + '</td>' +
+                    '<td class="label-cell">' + users[i].phone + '</td>' +
+                    '<td class="label-cell">' + users[i].email + '</td>' +
+                    '<td class="label-cell">' + users[i].facebook_id + '</td>' +
+                    '<td class="label-cell">' + users[i].img + '</td>' +
+                    '<td class="label-cell">' + users[i].type + '</td>' +
+                    '<td class="label-cell">' + users[i].age + '</td>' +
+                    '<td class="label-cell">' + users[i].address + '</td>' +
+                    '<td class="label-cell">' + users[i].id_orders + '</td>' +
+                    // '<td class="label-cell">' + users[i].push + '</td>' +
+                    '</tr>';
+            }
+            $$('#UsersList').html(usersList);
+
+            // mainView.router.load({url: "./pages/levelsPage.html"}, {transition: 'f7-circle'});
+        },
+        error: function (xhr, status) {
+            hidePreLoader();
+        }
+    });
+}
+
+function getAdminUsers() {
+    showPreLoader();
+    var url = "https://yallagym.herokuapp.com//api/cpanel/getalladmins";
+    app.request({
+        url: url,
+        method: "Get",
+        headers: {
+            contentType: "application/json"
+        },
+        success: function (data, status, xhr) {
+            hidePreLoader();
+            var users = JSON.parse(data);
+            var usersList = '';
+            SaveLocalObject('UsersList', users);
+            for (var i = 0; i < users.length; i++) {
+                usersList += '<tr><td class="label-cell">' + users[i].id +
+                    '<td class="label-cell">' + users[i].username + '</td>' +
+                    '<td class="label-cell">' + users[i].password + '</td>' +
+                    '<td class="label-cell">' + users[i].role + '</td>' +
+                    '<td class="numeric-cell"><a data-id="' + users[i].id + '" onclick="updateAdmin(this)" class="button">' +
+                    '<i class="icon f7-icons green-color">square_pencil</i>' +
+                    '</a>' +
+                    '<a data-id="' + users[i].id + '" onclick="deleteAdmin(this)" class="button">' +
+                    '<i class="icon f7-icons green-color">trash_circle_fill</i></a>' +
+                    '</td>' +
+                    '</tr>';
+            }
+            $$('#adminUsersList').html(usersList);
+
+            // mainView.router.load({url: "./pages/levelsPage.html"}, {transition: 'f7-circle'});
+        },
+        error: function (xhr, status) {
+            hidePreLoader();
+        }
+    });
+}
 
 function openGymGallery(gym) {
     var gym_id = gym.dataset.id;
@@ -479,6 +673,33 @@ function previewFiles() {
         [].forEach.call(files, readAndPreview);
     }
 
+}
+
+function getCurrentLocation() {
+    showPreLoader();
+
+    function onSuccess(position) {
+        console.log('Latitude: ' + position.coords.latitude + '\n' +
+            'Longitude: ' + position.coords.longitude + '\n' +
+            'Altitude: ' + position.coords.altitude + '\n' +
+            'Accuracy: ' + position.coords.accuracy + '\n' +
+            'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
+            'Heading: ' + position.coords.heading + '\n' +
+            'Speed: ' + position.coords.speed + '\n' +
+            'Timestamp: ' + position.timestamp + '\n');
+        var latlng = position.coords.latitude + ',' + position.coords.longitude;
+        $$('#gym_create_Coordinates').val(latlng);
+        $$('#gym_update_Coordinates').val(latlng);
+        hidePreLoader();
+    }
+
+    function onError(error) {
+        hidePreLoader();
+        ErrorAlert('code: ' + error.code + '\n' +
+            'message: ' + error.message + '\n');
+    }
+
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
 }
 
 function parseArabic(str) {

@@ -1,1 +1,1 @@
-{"plugins":["cordova-plugin-whitelist","cordova-plugin-camera","cordova-connectivity-monitor","cordova-play-services-version-adapter","cordova-plugin-file"]}
+{"plugins":["cordova-plugin-whitelist","cordova-plugin-camera","cordova-connectivity-monitor","cordova-play-services-version-adapter","cordova-plugin-file","cordova-plugin-geolocation"]}

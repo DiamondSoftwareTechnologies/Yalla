@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.Yalla Gym.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets">
+<widget id="com.YallaGym.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets">
     <name>Yalla Gym</name>
     <description>
         A sample Apache Cordova application that stands for fitness.

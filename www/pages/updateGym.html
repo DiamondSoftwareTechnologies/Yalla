@@ -15,13 +15,13 @@
             </div>
         </div>
     </div>
-    <div class="panel panel-right panel-right panel-reveal panel-resizable panel-init">
-        <div class="block">
-            <p>Right Panel content here</p>
-            <p><a class="panel-close" href="#">Close me</a></p>
-            <!--<p><a class="panel-open" href="#" data-panel=".panel-left">Open Left Panel</a></p>-->
-        </div>
-    </div>
+    <!--<div class="panel panel-right panel-right panel-reveal panel-resizable panel-init">-->
+        <!--<div class="block">-->
+            <!--<p>Right Panel content here</p>-->
+            <!--<p><a class="panel-close" href="#">Close me</a></p>-->
+            <!--&lt;!&ndash;<p><a class="panel-open" href="#" data-panel=".panel-left">Open Left Panel</a></p>&ndash;&gt;-->
+        <!--</div>-->
+    <!--</div>-->
     <div class="page-content">
         <div class="list">
             <ul>
@@ -47,6 +47,30 @@
                         <div class="item-title item-floating-label">Name</div>
                         <div class="item-input-wrap">
                             <input id="gym_update_Name" type="text" name="name">
+                            <span class="input-clear-button"></span>
+                        </div>
+                    </div>
+                </li>
+                <li class="item-content item-input">
+                    <div class="item-media">
+                        <i class="icon f7-icons green-color">envelope_badge</i>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-title item-floating-label">User Name</div>
+                        <div class="item-input-wrap">
+                            <input id="gym_update_user_name" type="text" name="name">
+                            <span class="input-clear-button"></span>
+                        </div>
+                    </div>
+                </li>
+                <li class="item-content item-input">
+                    <div class="item-media">
+                        <i class="icon f7-icons green-color">lock_shield</i>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-title item-floating-label">Password</div>
+                        <div class="item-input-wrap">
+                            <input id="gym_update_password" type="text" name="name">
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -104,7 +128,7 @@
                     </div>
                 </li>
                 <li class="item-content item-input">
-                    <div class="item-media">
+                    <div class="item-media" onclick="getCurrentLocationUpdate()">
                         <i class="icon f7-icons green-color">map</i>
                     </div>
                     <div class="item-inner">
