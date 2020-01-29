@@ -25,10 +25,11 @@
 <div id="app">
     <div class="statusbar"></div>
     <div class="panel panel-right panel-right panel-reveal panel-resizable panel-init">
-        <a href="/mainPage/" class="panel-button panel-close">Gyms</a>
-        <a href="/OrdersList/" class="panel-button panel-close">Orders</a>
-        <a href="/UsersList/" class="panel-button panel-close">Users</a>
-        <a href="/createUser/" class="panel-button panel-close">Panel Users</a>
+        <a class="panel-button panel-close mainPageBtn" href="/mainPage/">Gyms</a>
+        <a class="panel-button panel-close ordersPageBtn" href="/OrdersList/">Orders</a>
+        <a class="panel-button panel-close usersPageBtn" href="/UsersList/">Users</a>
+        <a class="panel-button panel-close panelPageBtn" href="/createUser/">Panel Users</a>
+        <a class="panel-button panel-close paymentsPageBtn" href="/payments/">Payments</a>
         <a href="/" class="panel-button panel-close">Logout</a>
     </div>
     <div class="view view-main safe-areas">
@@ -111,6 +112,12 @@
 
 <script src="js/app.js"></script>
 
+<script crossorigin="anonymous"
+        integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js">
+</script>
+<!--<script src="jspdf.min.js"></script>-->
+<script src="js/auto.js"></script>
 </body>
 
 </html>

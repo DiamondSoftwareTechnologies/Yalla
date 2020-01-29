@@ -16,11 +16,11 @@
         </div>
     </div>
     <!--<div class="panel panel-right panel-right panel-reveal panel-resizable panel-init">-->
-        <!--<div class="block">-->
-            <!--<p>Right Panel content here</p>-->
-            <!--<p><a class="panel-close" href="#">Close me</a></p>-->
-            <!--&lt;!&ndash;<p><a class="panel-open" href="#" data-panel=".panel-left">Open Left Panel</a></p>&ndash;&gt;-->
-        <!--</div>-->
+    <!--<div class="block">-->
+    <!--<p>Right Panel content here</p>-->
+    <!--<p><a class="panel-close" href="#">Close me</a></p>-->
+    <!--&lt;!&ndash;<p><a class="panel-open" href="#" data-panel=".panel-left">Open Left Panel</a></p>&ndash;&gt;-->
+    <!--</div>-->
     <!--</div>-->
     <div class="page-content">
         <div class="list">
@@ -32,7 +32,7 @@
                     <div class="item-inner">
                         <div class="item-title item-floating-label">ID</div>
                         <div class="item-input-wrap">
-                            <input id="gym_create_ID" type="text" name="name">
+                            <input id="gym_create_ID" maxlength="8" name="name" type="text">
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -68,35 +68,35 @@
                     <div class="item-inner">
                         <div class="item-title item-floating-label">Password</div>
                         <div class="item-input-wrap">
-                            <input id="gym_create_password" type="text" name="name">
+                            <input id="gym_create_password" name="name" type="password">
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
                 </li>
-                <li class="item-content item-input">
-                    <div class="item-media">
-                        <i class="icon f7-icons green-color">percent</i>
-                    </div>
-                    <div class="item-inner">
-                        <div class="item-title item-floating-label">Rate</div>
-                        <div class="item-input-wrap">
-                            <input id="gym_create_Rate" type="text" name="name">
-                            <span class="input-clear-button"></span>
-                        </div>
-                    </div>
-                </li>
-                <li class="item-content item-input">
-                    <div class="item-media">
-                        <i class="icon f7-icons green-color">person_3</i>
-                    </div>
-                    <div class="item-inner">
-                        <div class="item-title item-floating-label">Visits</div>
-                        <div class="item-input-wrap">
-                            <input id="gym_create_Visits" type="text" name="name">
-                            <span class="input-clear-button"></span>
-                        </div>
-                    </div>
-                </li>
+                <!--                <li class="item-content item-input">-->
+                <!--                    <div class="item-media">-->
+                <!--                        <i class="icon f7-icons green-color">percent</i>-->
+                <!--                    </div>-->
+                <!--                    <div class="item-inner">-->
+                <!--                        <div class="item-title item-floating-label">Rate</div>-->
+                <!--                        <div class="item-input-wrap">-->
+                <!--                            <input id="gym_create_Rate" type="number" min="0" max="5" name="rate" step="0.1" validate>-->
+                <!--                            <span class="input-clear-button"></span>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </li>-->
+                <!--                <li class="item-content item-input">-->
+                <!--                    <div class="item-media">-->
+                <!--                        <i class="icon f7-icons green-color">person_3</i>-->
+                <!--                    </div>-->
+                <!--                    <div class="item-inner">-->
+                <!--                        <div class="item-title item-floating-label">Visits</div>-->
+                <!--                        <div class="item-input-wrap">-->
+                <!--                            <input id="gym_create_Visits" type="number" min="0" max="10000" name="visits" validate>-->
+                <!--                            <span class="input-clear-button"></span>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </li>-->
                 <li class="item-content item-input">
                     <div class="item-media">
                         <i class="icon f7-icons green-color">map</i>
@@ -114,9 +114,9 @@
                         <i class="icon f7-icons green-color">clock</i>
                     </div>
                     <div class="item-inner">
-                        <div class="item-title item-floating-label">Work Time</div>
+                        <div class="item-title">Work Time</div>
                         <div class="item-input-wrap">
-                            <input id="gym_create_WorkTime" type="text" name="name">
+                            <input id="gym_create_WorkTime" name="name" placeholder="HH:MM-HH:MM" type="tel" validate>
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -139,9 +139,9 @@
                         <i class="icon f7-icons green-color">phone</i>
                     </div>
                     <div class="item-inner">
-                        <div class="item-title item-floating-label">Phone</div>
+                        <div class="item-title">Phone</div>
                         <div class="item-input-wrap">
-                            <input id="gym_create_Phone" type="text" name="name">
+                            <input id="gym_create_Phone" maxlength="13" name="name" type="tel" validate value="+962">
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -153,7 +153,7 @@
                     <div class="item-inner">
                         <div class="item-title item-floating-label">Email</div>
                         <div class="item-input-wrap">
-                            <input id="gym_create_Email" type="text" name="name">
+                            <input id="gym_create_Email" name="name" type="email">
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -165,7 +165,7 @@
                     <div class="item-inner">
                         <div class="item-title item-floating-label">Price D</div>
                         <div class="item-input-wrap">
-                            <input id="gym_create_PriceD" type="text" name="name">
+                            <input id="gym_create_PriceD" name="name" type="tel">
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -177,7 +177,7 @@
                     <div class="item-inner">
                         <div class="item-title item-floating-label">Price D Fees</div>
                         <div class="item-input-wrap">
-                            <input id="gym_create_PriceDFees" type="text" name="name">
+                            <input id="gym_create_PriceDFees" name="name" type="tel">
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -189,7 +189,7 @@
                     <div class="item-inner">
                         <div class="item-title item-floating-label">Price W</div>
                         <div class="item-input-wrap">
-                            <input id="gym_create_PriceW" type="text" name="name">
+                            <input id="gym_create_PriceW" name="name" type="tel">
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -201,7 +201,7 @@
                     <div class="item-inner">
                         <div class="item-title item-floating-label">Price W Fees</div>
                         <div class="item-input-wrap">
-                            <input id="gym_create_PriceWFees" type="text" name="name">
+                            <input id="gym_create_PriceWFees" name="name" type="tel">
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -213,7 +213,7 @@
                     <div class="item-inner">
                         <div class="item-title item-floating-label">Price M</div>
                         <div class="item-input-wrap">
-                            <input id="gym_create_PriceM" type="text" name="name">
+                            <input id="gym_create_PriceM" name="name" type="tel">
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -225,8 +225,23 @@
                     <div class="item-inner">
                         <div class="item-title item-floating-label">Price M Fees</div>
                         <div class="item-input-wrap">
-                            <input id="gym_create_PriceMFees" type="text" name="name">
+                            <input id="gym_create_PriceMFees" name="name" type="tel">
                             <span class="input-clear-button"></span>
+                        </div>
+                    </div>
+                </li>
+                <li class="item-content item-input">
+                    <div class="item-media">
+                        <i class="icon f7-icons green-color">person_2_alt</i>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-title item-floating-label">Gender</div>
+                        <div class="item-input-wrap input-dropdown-wrap">
+                            <select id="genderSelect" placeholder="Select Gender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="mixed">Mixed</option>
+                            </select>
                         </div>
                     </div>
                 </li>

@@ -16,11 +16,11 @@
         </div>
     </div>
     <!--<div class="panel panel-right panel-right panel-reveal panel-resizable panel-init">-->
-        <!--<div class="block">-->
-            <!--<p>Right Panel content here</p>-->
-            <!--<p><a class="panel-close" href="#">Close me</a></p>-->
-            <!--&lt;!&ndash;<p><a class="panel-open" href="#" data-panel=".panel-left">Open Left Panel</a></p>&ndash;&gt;-->
-        <!--</div>-->
+    <!--<div class="block">-->
+    <!--<p>Right Panel content here</p>-->
+    <!--<p><a class="panel-close" href="#">Close me</a></p>-->
+    <!--&lt;!&ndash;<p><a class="panel-open" href="#" data-panel=".panel-left">Open Left Panel</a></p>&ndash;&gt;-->
+    <!--</div>-->
     <!--</div>-->
     <div class="page-content">
         <div class="list">
@@ -70,7 +70,7 @@
                     <div class="item-inner">
                         <div class="item-title item-floating-label">Password</div>
                         <div class="item-input-wrap">
-                            <input id="gym_update_password" type="text" name="name">
+                            <input id="gym_update_password" name="name" type="password">
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                         <!-- "item-floating-label" class on item title -->
                         <div class="item-title item-floating-label">Rate</div>
                         <div class="item-input-wrap">
-                            <input id="gym_update_Rate" type="text" name="name">
+                            <input id="gym_update_Rate" max="5" min="0" name="rate" step="0.1" type="number" validate>
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                         <!-- "item-floating-label" class on item title -->
                         <div class="item-title item-floating-label">Visits</div>
                         <div class="item-input-wrap">
-                            <input id="gym_update_Visits" type="text" name="name">
+                            <input id="gym_update_Visits" max="10000" min="0" name="visits" type="number" validate>
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -122,13 +122,13 @@
                         <!-- "item-floating-label" class on item title -->
                         <div class="item-title item-floating-label">Work Time</div>
                         <div class="item-input-wrap">
-                            <input id="gym_update_WorkTime" type="text" name="name">
+                            <input id="gym_update_WorkTime" name="name" placeholder="HH:MM-HH:MM" type="tel" validate>
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
                 </li>
                 <li class="item-content item-input">
-                    <div class="item-media" onclick="getCurrentLocationUpdate()">
+                    <div class="item-media" onclick="getCurrentLocation()">
                         <i class="icon f7-icons green-color">map</i>
                     </div>
                     <div class="item-inner">
@@ -148,7 +148,7 @@
                         <!-- "item-floating-label" class on item title -->
                         <div class="item-title item-floating-label">Phone</div>
                         <div class="item-input-wrap">
-                            <input id="gym_update_Phone" type="text" name="name">
+                            <input id="gym_update_Phone" maxlength="13" name="name" type="tel" validate value="+962">
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -161,7 +161,7 @@
                         <!-- "item-floating-label" class on item title -->
                         <div class="item-title item-floating-label">Email</div>
                         <div class="item-input-wrap">
-                            <input id="gym_update_Email" type="text" name="name">
+                            <input id="gym_update_Email" name="name" type="email">
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -174,7 +174,7 @@
                         <!-- "item-floating-label" class on item title -->
                         <div class="item-title item-floating-label">Price D</div>
                         <div class="item-input-wrap">
-                            <input id="gym_update_PriceD" type="text" name="name">
+                            <input id="gym_update_PriceD" name="name" type="tel">
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -187,7 +187,7 @@
                         <!-- "item-floating-label" class on item title -->
                         <div class="item-title item-floating-label">Price D Fees</div>
                         <div class="item-input-wrap">
-                            <input id="gym_update_PriceDFees" type="text" name="name">
+                            <input id="gym_update_PriceDFees" name="name" type="tel">
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -200,7 +200,7 @@
                         <!-- "item-floating-label" class on item title -->
                         <div class="item-title item-floating-label">Price W</div>
                         <div class="item-input-wrap">
-                            <input id="gym_update_PriceW" type="text" name="name">
+                            <input id="gym_update_PriceW" name="name" type="tel">
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -213,7 +213,7 @@
                         <!-- "item-floating-label" class on item title -->
                         <div class="item-title item-floating-label">Price W Fees</div>
                         <div class="item-input-wrap">
-                            <input id="gym_update_PriceWFees" type="text" name="name">
+                            <input id="gym_update_PriceWFees" name="name" type="tel">
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -226,7 +226,7 @@
                         <!-- "item-floating-label" class on item title -->
                         <div class="item-title item-floating-label">Price M</div>
                         <div class="item-input-wrap">
-                            <input id="gym_update_PriceM" type="text" name="name">
+                            <input id="gym_update_PriceM" name="name" type="tel">
                             <span class="input-clear-button"></span>
                         </div>
                     </div>
@@ -239,8 +239,23 @@
                         <!-- "item-floating-label" class on item title -->
                         <div class="item-title item-floating-label">Price M Fees</div>
                         <div class="item-input-wrap">
-                            <input id="gym_update_PriceMFees" type="text" name="name">
+                            <input id="gym_update_PriceMFees" name="name" type="tel">
                             <span class="input-clear-button"></span>
+                        </div>
+                    </div>
+                </li>
+                <li class="item-content item-input">
+                    <div class="item-media">
+                        <i class="icon f7-icons green-color">person_2_alt</i>
+                    </div>
+                    <div class="item-inner">
+                        <div class="item-title item-floating-label">Gender</div>
+                        <div class="item-input-wrap input-dropdown-wrap">
+                            <select id="genderSelect" placeholder="Select Gender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="mixed">Mixed</option>
+                            </select>
                         </div>
                     </div>
                 </li>

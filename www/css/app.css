@@ -39,6 +39,12 @@ body {
     background-color: #FA9D16;
 }
 
+.card-expandable {
+    margin: auto;
+    /*width: 70% !important;*/
+    height: 100px !important;
+}
+
 .login-btn {
     height: 55px;
     width: 60%;
@@ -108,6 +114,10 @@ body {
     width: 50% !important;
     border-radius: 25px !important;
     font-size: 1.07rem;
+}
+
+.savePdf {
+    font-size: 2.2rem !important;
 }
 
 .login-screen-content {

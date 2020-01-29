@@ -10,15 +10,17 @@ routes = [
             transition: 'f7-circle',
         },
     },
+
     {
-        path: '/UsersList/',
-        url: './pages/UsersList.html',
+        path: '/createUser/',
+        url: './pages/createUser.html',
         options: {
             transition: 'f7-circle',
         },
-    },{
-        path: '/createUser/',
-        url: './pages/createUser.html',
+    },
+    {
+        path: '/payments/',
+        url: './pages/payments.html',
         options: {
             transition: 'f7-circle',
         },
